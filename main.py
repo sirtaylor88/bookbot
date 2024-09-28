@@ -69,5 +69,21 @@ def report(filepath: str) -> str:
     return text
 
 def main():
-    print(report("books/frankenstein.txt"))
+    book_path = "books/frankenstein.txt"
+    text = report(book_path)
+    num_words = count_words(text)
+    chars_dict = count_chars(text)
+    chars_sorted_list = sort_chars(chars_dict)
+
+    print(f"--- Begin report of {book_path} ---")
+    print(f"{num_words} words found in the document")
+    print()
+
+    for item in chars_sorted_list:
+        if not item["name"].isalpha():
+            continue
+        print(f"The '{item['name']}' character was found {item['count']} times")
+
+    print("--- End report ---")
+
 main()
